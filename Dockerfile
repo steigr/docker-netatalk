@@ -1,5 +1,6 @@
 FROM debian:buster-slim AS netatalk-base
 RUN  apt-get update \
+ &&  apt-get dist-upgrade -y \
  &&  apt-get install -y --no-install-recommends libgcrypt20 libdbus-1-3 libevent-2.1-6 libtdb1 dbus libacl1 libtracker-sparql-2.0-0 tracker libdbus-glib-1-2 \
  &&  rm -rf /var/lib/apt/lists/*
 
