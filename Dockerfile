@@ -33,6 +33,9 @@ RUN  find /dist -type f \
      | grep 'not stripped' \
      | awk -F": " '{print $1}' \
      | xargs -n1 -r -t strip
+RUN  rm /dist/etc/afp.conf
 
 FROM netatalk-base AS netatalk
 COPY --from=netatalk-compiler /dist /
+COPY docker-entrypoint.sh /usr/local/sbin/netatalk
+ENTRYPOINT ["netatalk"]
